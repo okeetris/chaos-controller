@@ -6,14 +6,14 @@ const app = express();
 const port = process.env.PORT || "8080";
 
 const filePaths = [
-  { name: "bp-con-7min-demo", path: "boilerplate-concurrency-7min-demo.jmx" },
-  { name: "bp-con-demo", path: "boilerplate-concurrency-demo.jmx" },
-  { name: "bp-db", path: "boilerplate-db.jmx" },
-  { name: "bp-spike-demo", path: "boilerplate-spike-demo.jmx" },
-  { name: "boilerplate", path: "boilerplate.jmx" },
-  { name: "cloudssky", path: "cloudssky.jmx" },
-  { name: "defra", path: "defra.jmx" },
-  { name: "graphresults", path: "graphresults.jmx" }
+  { name: "bp-con-7min-demo", path: "/boilerplate-concurrency-7min-demo.jmx" },
+  { name: "bp-con-demo", path: "/boilerplate-concurrency-demo.jmx" },
+  { name: "bp-db", path: "/boilerplate-db.jmx" },
+  { name: "bp-spike-demo", path: "/boilerplate-spike-demo.jmx" },
+  { name: "boilerplate", path: "/boilerplate.jmx" },
+  { name: "cloudssky", path: "/cloudssky.jmx" },
+  { name: "defra", path: "/defra.jmx" },
+  { name: "graphresults", path: "/graphresults.jmx" }
 ];
 
 app.get("/file/:fileId", (req, res) => {

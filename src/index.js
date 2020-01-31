@@ -22,24 +22,24 @@ const filePaths = [
 
 app.get("/file/:fileId", (req, res) => {
   const filePath = filePaths.find(x => x.name === req.params.fileId).path;
-  console.log(filePath);
   let master_pod = "";
   exec(
     `oc get pod  | grep jmeter-master | awk '{print $1}'`,
-    (error, stdout, sterr) => {
-      console.log(stdout);
-      master_pod = stdout;
-      console.log(stderr);
-      if (error !== null) {
-        console.log(`exec error: ${error}`);
-      }
-    }
-  );
-  exec(
-    // "oc get pods",
-    `oc exec -ti ${master_pod} -- /bin/bash /jmeter/load_test ${filePath}`,
     (error, stdout, stderr) => {
       console.log(stdout);
+      master_pod = stdout.trim();
+      exec(
+        // "oc get pods",
+        `oc exec -ti ${master_pod} -- /bin/bash /jmeter/load_test ${filePath}`,
+        (error, stdout, stderr) => {
+          console.log(stdout);
+          console.log(stderr);
+          if (error !== null) {
+            console.log(`exec error: ${error}`);
+          }
+        }
+      );
+
       console.log(stderr);
       if (error !== null) {
         console.log(`exec error: ${error}`);

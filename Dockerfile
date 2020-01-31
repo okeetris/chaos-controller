@@ -21,4 +21,4 @@ EXPOSE 8080/tcp
   
 # Start the app  
 CMD [ "npm", "run", "start"]  
-USER node
+# USER node

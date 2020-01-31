@@ -13,14 +13,17 @@ const filePaths = [
   { name: "boilerplate", path: "/boilerplate.jmx" },
   { name: "cloudssky", path: "/cloudssky.jmx" },
   { name: "defra", path: "/defra.jmx" },
-  { name: "graphresults", path: "/graphresults.jmx" }
+  { name: "graphresults", path: "/graphresults.jmx" },
+  { name: "test", path: "/jmeter/testScript.jmx" }
 ];
 
 app.get("/file/:fileId", (req, res) => {
   const filePath = filePaths.find(x => x.name === req.params.fileId).path;
+  console.log(filePath);
 
   exec(
-    `oc exec -ti $master_pod -- /bin/bash /jmeter/load_test ${filePath}`,
+    "oc get pods",
+    // `oc exec -ti $master_pod -- /bin/bash /jmeter/load_test ${filePath}`,
     (error, stdout, stderr) => {
       console.log(stdout);
       console.log(stderr);
